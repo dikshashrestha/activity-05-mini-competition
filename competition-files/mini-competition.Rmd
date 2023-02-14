@@ -6,3 +6,56 @@ output: github_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+
+
+```{r}
+library(dplyr)
+library(corrplot)
+```
+
+
+
+```{r}
+data <- read.csv("/Users/diksha/Desktop/4_Sem/Modeling and regression/STA 631/Activities/activity-05-mini-competition/competition-files/data/allendale-students.csv")
+```
+
+```{r}
+data
+```
+```{r}
+num_data <- data %>%
+  select(1,2,3,4,7)
+```
+
+
+
+```{r normalizing data}
+
+#Normalizing the Data
+
+normalize <- num_data %>%
+  
+  mutate(log_data = log(num_data))
+
+```
+
+
+```{r correlation matrix}
+cor_matrix <- cor(num_data)
+cor_matrix
+```
+
+```{r extracting correlation of debt}
+
+#Extracting the corelation of debt with other variables
+
+corelation <- cor_matrix[1,5]
+corelation
+
+```
+
+```{r}
+corrplot(cor_matrix, method = "square")
+
+```
+
